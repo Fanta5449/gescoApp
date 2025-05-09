@@ -1,0 +1,83 @@
+// Font Awesome
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+// MDB SCSS
+@import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+.t-white {
+  color: #fff !important;  
+}
+.t-black {
+  color: #000 !important;
+}
+.t-primary {
+  color: #007bff !important;
+}
+.t-secondary {
+  color: #6c757d !important;
+}
+
+.t-success {
+  color: #28a745 !important;
+}
+.t-danger {
+  color: #dc3545 !important;
+}
+.t-warning {
+  color: #ffc107 !important;
+}
+.t-info {
+  color: #17a2b8 !important;
+}
+.t-light {
+  color: #f8f9fa !important;
+}
+.t-dark {
+  color: #343a40 !important;
+}
+.t-body {
+  color: #212529 !important;
+}
+.t-muted {
+  color: #6c757d !important;
+} 
+
+input.form-control {
+  border: 1px solid #ced4da !important; /* Couleur de la bordure */
+  border-radius: 4px !important; /* Coins arrondis */
+  padding: 0.375rem 0.75rem !important; /* Espacement interne */
+}
+
+input.form-control:focus {
+  border-color: #80bdff !important; /* Couleur de la bordure au focus */
+  outline: none !important; /* Supprime l'effet de focus par défaut */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important; /* Effet de focus */
+}
+
+select.form-control {
+  border: 1px solid #ced4da !important; /* Couleur de la bordure */
+  border-radius: 4px !important; /* Coins arrondis */
+  padding: 0.375rem 0.75rem !important; /* Espacement interne */
+  background-color: #fff !important; /* Couleur de fond */
+  appearance: none; /* Supprime l'apparence par défaut du navigateur */
+}
+
+select.form-control:focus {
+  border-color: #80bdff !important; /* Couleur de la bordure au focus */
+  outline: none !important; /* Supprime l'effet de focus par défaut */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important; /* Effet de focus */
+}
+
+select.form-control {
+  border: 1px solid #ced4da !important; /* Couleur de la bordure */
+  border-radius: 4px !important; /* Coins arrondis */
+  padding: 0.375rem 0.75rem !important; /* Espacement interne */
+  background-color: #fff !important; /* Couleur de fond */
+  appearance: none; /* Supprime l'apparence par défaut du navigateur */
+}
+
+select.form-control:focus {
+  border-color: #80bdff !important; /* Couleur de la bordure au focus */
+  outline: none !important; /* Supprime l'effet de focus par défaut */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important; /* Effet de focus */
+}

@@ -1,0 +1,197 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Gestion Admin</h2>
+  
+    <!-- Row 1: Gestion des classes -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-body">
+            <h4 class="card-title">Gestion des Classes</h4>
+            <form (ngSubmit)="addClass()">
+              <div class="form-outline mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="newClassName"
+                  name="className"
+                  placeholder="Nom de la classe"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+            <ul class="list-group mt-3">
+              <li
+                *ngFor="let c of classes"
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                {{ c.name }}
+                <div>
+                  <button class="btn btn-warning btn-sm me-2" (click)="editClass(c)">Modifier</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteClass(c.id)">Supprimer</button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Row 2: Gestion des semestres -->
+    <div class="row mb-4">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-body">
+              <h4 class="card-title">Gestion des Semestres</h4>
+              <form (ngSubmit)="addSemester()">
+                <div class="form-outline mb-3">
+                  <label for="classSelect">Classe</label>
+                  <select
+                    id="classSelect"
+                    class="form-control"
+                    [(ngModel)]="selectedClassId"
+                    name="classId"
+                    (change)="loadSemesters(selectedClassId)" 
+                    required> <!-- Appel de la méthode -->
+                    <option *ngFor="let c of classes" [value]="c.id">{{ c.name }}</option>
+                  </select>
+                </div>
+                <div class="form-outline mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="newSemesterName"
+                    name="semesterName"
+                    placeholder="Nom du semestre"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+              </form>
+              <ul class="list-group mt-3">
+                <li
+                  *ngFor="let s of semesters"
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  {{ s.name }}
+                  <div>
+                    <button class="btn btn-warning btn-sm me-2" (click)="editSemester(s)">Modifier</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteSemester(s.id)">Supprimer</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Row 3: Gestion des matières -->
+    <div class="row mb-4">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-body">
+              <h4 class="card-title">Gestion des Matières</h4>
+              <form (ngSubmit)="addSubject()">
+                <div class="form-outline mb-3">
+                  <label for="classSelectForSubject">Classe</label>
+                  <select
+                    id="classSelectForSubject"
+                    class="form-control"
+                    [(ngModel)]="selectedClassIdForSubject"
+                    name="classIdForSubject"
+                    (change)="loadSemesters(selectedClassIdForSubject)"
+                    required
+                  >
+                    <option *ngFor="let c of classes" [value]="c.id">{{ c.name }}</option>
+                  </select>
+                </div>
+                <div class="form-outline mb-3">
+                  <label for="semesterSelect">Semestre</label>
+                  <select
+                    id="semesterSelect"
+                    class="form-control"
+                    [(ngModel)]="selectedSemesterId"
+                    name="semesterId"
+                    (change)="loadSubjects(selectedSemesterId)"
+                    required
+                  > <!-- Appel de la méthode -->
+                    <option *ngFor="let s of semesters" [value]="s.id">{{ s.name }}</option>
+                  </select>
+                </div>
+                <div class="form-outline mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="newSubjectName"
+                    name="subjectName"
+                    placeholder="Nom de la matière"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+              </form>
+              <ul class="list-group mt-3">
+                <li
+                  *ngFor="let sub of subjects"
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  {{ sub.name }}
+                  <div>
+                    <button class="btn btn-warning btn-sm me-2" (click)="editSubject(sub)">Modifier</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteSubject(sub.id)">Supprimer</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: Gestion des étudiants -->
+<div class="row mb-4">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-body">
+        <h4 class="card-title">Gestion des Étudiants</h4>
+        <form (ngSubmit)="importStudents()">
+          <div class="form-outline mb-3">
+            <label for="classSelectForStudents">Classe</label>
+            <select
+              id="classSelectForStudents"
+              class="form-control"
+              [(ngModel)]="selectedClassIdForStudents"
+              name="classIdForStudents"
+              required
+            >
+              <option *ngFor="let c of classes" [value]="c.id">{{ c.name }}</option>
+            </select>
+          </div>
+          <div class="form-outline mb-3">
+            <label for="fileInput">Importer un fichier Excel</label>
+            <input
+              type="file"
+              id="fileInput"
+              class="form-control"
+              (change)="onFileChange($event)"
+              accept=".xlsx, .xls"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Importer</button>
+        </form>
+        <ul class="list-group mt-3">
+          <li
+            *ngFor="let student of students"
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            {{ student.name }}
+            <div>
+              <button class="btn btn-danger btn-sm" (click)="deleteStudent(student.id)">Supprimer</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+

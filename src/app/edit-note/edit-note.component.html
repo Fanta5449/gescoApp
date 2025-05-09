@@ -1,0 +1,104 @@
+<div class="container mt-5">
+    <!-- Row 1: Sélection des filtres -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-body">
+            <h4 class="card-title">Filtrer les Notes</h4>
+            <div class="row">
+              <!-- Select Box pour les Classes -->
+              <div class="col-md-4 mb-3">
+                <label for="classSelect">Classe</label>
+                <select
+                  id="classSelect"
+                  class="form-control"
+                  [(ngModel)]="selectedClassId"
+                  (change)="loadSemesters(selectedClassId)"
+                >
+                  <option *ngFor="let c of classes" [value]="c.id">{{ c.name }}</option>
+                </select>
+              </div>
+  
+              <!-- Select Box pour les Semestres -->
+              <div class="col-md-4 mb-3">
+                <label for="semesterSelect">Semestre</label>
+                <select
+                  id="semesterSelect"
+                  class="form-control"
+                  [(ngModel)]="selectedSemesterId"
+                  (change)="loadSubjects(selectedSemesterId)"
+                >
+                  <option *ngFor="let s of semesters" [value]="s.id">{{ s.name }}</option>
+                </select>
+              </div>
+  
+              <!-- Select Box pour les Matières -->
+              <div class="col-md-4 mb-3">
+                <label for="subjectSelect">Matière</label>
+                <select
+                  id="subjectSelect"
+                  class="form-control"
+                  [(ngModel)]="selectedSubjectId"
+                  (change)="loadStudents(selectedClassId)"
+                >
+                  <option *ngFor="let sub of subjects" [value]="sub.id">{{ sub.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Row 2: Tableau des étudiants et notes -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-body">
+            <h4 class="card-title">Liste des Étudiants et Notes</h4>
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Noms</th>
+                  <th>Note de Classe</th>
+                  <th>Note d'Examen</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of students">
+                  <td>{{ student.id }}</td>
+                  <td>{{ student.name }}</td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      [(ngModel)]="student.classNote"
+                      placeholder="Note de classe"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      [(ngModel)]="student.examNote"
+                      placeholder="Note d'examen"
+                    />
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-primary btn-sm"
+                      (click)="saveNote(student)"
+                    >
+                      Enregistrer
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
